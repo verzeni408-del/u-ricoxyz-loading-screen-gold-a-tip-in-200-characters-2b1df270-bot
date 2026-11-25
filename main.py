@@ -1,20 +1,20 @@
-"""Loading Screen Gold entry writer.
+"""Loading Screen Gold: A Tip in 200 Characters (v2).
 
-Writes the single 86-character loading-screen tip to /output/entry.txt.
-The tip speaks to both the stressed developer and the AI coding agent:
-the agent is not stuck, it is just waiting for the human to look away.
+Writes the tip to /output/entry.txt, exactly as the competition expects.
+One line, no trailing newline.
 """
 
 from pathlib import Path
 
-TIP = "Tip: Your agent is not stuck. It is politely waiting for you to stop watching it work."
-
-OUTPUT_PATH = Path("/output/entry.txt")
+TIP = "Tip: If your agent says 'almost done' for the third time, it is already building a second project."
 
 
-def main() -> None:
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(TIP, encoding="utf-8")
+def main():
+    if not 1 <= len(TIP) <= 200:
+        raise ValueError(f"tip must be 1-200 characters, got {len(TIP)}")
+    out = Path("/output/entry.txt")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(TIP, encoding="utf-8")
 
 
 if __name__ == "__main__":
